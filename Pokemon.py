@@ -29,7 +29,9 @@ data = get_poke_data()
 @app.get("/pokemon/{name_or_id}")
 def poke_info(name_or_id: str) -> dict:
     if not isinstance(data, dict):
-        return {"error" : data}
+        return ({"error" : data})
+    if not name_or_id or not name_or_id.strip():
+        return({"error" : "Name or ID is invalid. Please enter a valid name or ID."})
     
     Pokemons = {data["results"][i]["name"] : data["results"][i]["url"] for i in range(len(data["results"]))}
     name_or_id = name_or_id.replace(",", ".")
@@ -37,13 +39,13 @@ def poke_info(name_or_id: str) -> dict:
     if name_or_id.replace(".", "").isnumeric() == True and name_or_id.count(".") <= 1:
         id = float(name_or_id)
         if id < 1 or (id > 1025 and id < 10001) or id > 10326 or int(id) != id:
-            return{"error" : "ID is invalid. Please enter a valid name or ID."}
+            return({"error" : "ID is invalid. Please enter a valid name or ID."})
         url2 = f"https://pokeapi.co/api/v2/pokemon/{int(id)}"
     
     else:
         name = name_or_id.lower()
         if not name in Pokemons:
-            return{"error" : "Name is invalid. Please enter a valid name or ID."}
+            return({"error" : "Name is invalid. Please enter a valid name or ID."})
         url2 = Pokemons[name]
         
     response2 = requests.get(url2)
