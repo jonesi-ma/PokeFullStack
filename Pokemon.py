@@ -2,6 +2,7 @@ import requests
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from pathlib import Path
 
 app = FastAPI()
 
@@ -27,9 +28,11 @@ def get_poke_data():
 
 data = get_poke_data()
 
+BASE_DIR = Path(__file__).resolve().parent
+
 @app.get("/")
 def poke_info_home():
-    return FileResponse("../HTML/PokeInfo.html")
+    return FileResponse(BASE_DIR.parent / "HTML" / "PokeInfo.html")
 
 @app.get("/pokemon/")
 def empty_poke_info() -> dict:    
