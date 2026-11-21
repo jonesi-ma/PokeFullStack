@@ -32,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent
 
 @app.get("/")
 def poke_info_home():
-    return FileResponse(BASE_DIR.parent / "HTML" / "PokeInfo.html")
+    return FileResponse(BASE_DIR.parent / "PokeInfo.html")
 
 @app.get("/pokemon/")
 def empty_poke_info() -> dict:    
