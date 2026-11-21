@@ -26,6 +26,10 @@ def get_poke_data():
 
 data = get_poke_data()
 
+@app.get("pokemon/")
+def empty_poke_info() -> dict:
+    return({"error" : "Name or ID is invalid. Please enter a valid name or ID"})
+
 @app.get("/pokemon/{name_or_id}")
 def poke_info(name_or_id: str) -> dict:
     if not isinstance(data, dict):
