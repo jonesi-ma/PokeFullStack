@@ -1,5 +1,5 @@
 import requests
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from pathlib import Path
@@ -32,7 +32,17 @@ BASE_DIR = Path(__file__).resolve().parent
 
 @app.get("/")
 def poke_info_home():
-    return FileResponse(BASE_DIR.parent / "PokeInfo.html")
+    search_roots = [BASE_DIR, BASE_DIR.parent]
+    for root in search_roots:
+        if root.exists():
+            matches = list(root.rglob("PokeInfo.html"))
+            if matches:
+                return FileResponse(matches[0])
+
+    raise HTTPException(
+        status_code=500,
+        detail=f"PokeInfo.html nicht gefunden. BASE_DIR={BASE_DIR}",
+    )
 
 @app.get("/pokemon/")
 def empty_poke_info() -> dict:    
