@@ -1,0 +1,114 @@
+@font-face {
+    font-family: "Pokémon";
+    src: url("../../fonts/Ketchum\ Italic.otf") format("opentype");
+}
+.pokelogo {
+    text-align: left;
+    font-family: "Pokémon";
+    font-weight: 300;
+    font-size: 130px;
+    color: #ffcb05;
+    -webkit-text-stroke: 3px #2a75bb;
+    letter-spacing: 4px;
+    margin-left: 80px;
+    margin-bottom: -25px;
+    padding-bottom: 0px;
+}
+body {
+    text-align: left;
+    font-family: "Pokémon";
+    font-weight: 300;
+    color: black;
+    margin-top: 0px;
+    padding-top: 0px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../API/pokebackground.webp");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+.header {
+    text-align: left;
+    font-family: "Pokémon";
+    font-weight: 300;
+    color: black;
+    margin-left: 100px;
+}
+#pokemonInput {
+    text-align: left;
+    font-family: Helvetica, sans-serif;
+    font-weight: 100;
+    color: rgb(0, 0, 0);
+    background-color: white;
+
+    /* Größer machen */ 
+    padding: 8px 24px;
+    margin-left: 85px;
+    font-size: 16px;
+
+    /* Rundes Eingabefeld */
+    border-radius: 50px; /* je höher, desto runder */
+    border: none;
+    display: block;
+    width: 500px;
+    max-width: 80%;
+}
+#pokemonInput::placeholder {
+    color: rgb(185, 185, 185);
+    opacity: 1;    
+}
+#submitBtn {
+    background-color: white;
+    padding: 8px 24px;
+    margin-top: 8px;
+    margin-left: 470px;
+    font-size: 16px;
+    border-radius: 50px;
+    border: none;
+    display: block;
+}
+.poke-card {
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 1px;
+    padding-top: 1px;
+}
+.card-row {
+    display: flex;
+    margin: 8px;
+    align-items: baseline;
+}
+.label {
+    width: 90px;
+    flex-shrink: 0;
+}
+.value{
+    flex-grow: 1;
+    font-family: Helvetica, sans-serif;
+    font-size: small;
+}
+.error-response {
+    position: absolute;
+    font-family: Helvetica, sans-serif;
+    display: inline-block;
+    margin-left: 80px;
+    margin-right: 40px;
+    margin-top: 8px;
+    margin-bottom: 40px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.65)
+        );
+    background-color: rgba(220, 38, 38, 0.5);
+    border: 1.5px solid rgba(220, 38, 38, 0.8);
+    border-radius: 5px;
+    color: rgba(220, 38, 38, 0.8);
+    font-size: 0.95rem;
+}
