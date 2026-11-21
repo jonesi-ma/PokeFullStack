@@ -2,6 +2,7 @@ import requests
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 
 app = FastAPI()
@@ -29,6 +30,16 @@ def get_poke_data():
 data = get_poke_data()
 
 BASE_DIR = Path(__file__).resolve().parent
+
+html_matches = [
+    p.parent
+    for root in (BASE_DIR, BASE_DIR.parent)
+    if root.exists()
+    for p in root.rglob("PokeInfo.html")
+]
+STATIC_DIR = html_matches[0] if html_matches else BASE_DIR
+
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 @app.get("/")
 def poke_info_home():
