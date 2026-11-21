@@ -26,7 +26,7 @@ def get_poke_data():
 
 data = get_poke_data()
 
-@app.get("pokemon/")
+@app.get("/pokemon/")
 def empty_poke_info() -> dict:
     return({"error" : "Name or ID is invalid. Please enter a valid name or ID"})
 
